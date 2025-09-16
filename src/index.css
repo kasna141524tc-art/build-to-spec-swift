@@ -2,95 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* CryptoFlow Journal Design System - Inspired by Phantom Wallet & Mobile Design */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base Colors - Dark Theme Inspired */
+    --background: 224 20% 10%;  /* Dark background #1A1A3D */
+    --foreground: 210 40% 98%;  /* Light text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 224 15% 15%;        /* Dark cards */
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 224 15% 15%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
+    /* Primary - Purple-Blue Gradient */
+    --primary: 245 58% 67%;     /* #5855FF */
     --primary-foreground: 210 40% 98%;
+    --primary-light: 249 58% 72%; /* #7875FF */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Subtle variations */
+    --secondary: 224 15% 20%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 224 15% 18%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 224 15% 20%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84.2% 60.2%;
+    /* Status Colors */
+    --destructive: 0 84% 60%;   /* Red for losses */
     --destructive-foreground: 210 40% 98%;
+    --success: 142 76% 36%;     /* Green for profits */
+    --success-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Accent Colors from Design */
+    --coral: 10 90% 68%;        /* Coral/Pink accent */
+    --coral-foreground: 210 40% 98%;
+    --blue-accent: 214 88% 65%; /* Blue accent */
+    --blue-accent-foreground: 210 40% 98%;
 
-    --radius: 0.5rem;
+    --border: 224 15% 25%;
+    --input: 224 15% 18%;
+    --ring: 245 58% 67%;
 
-    --sidebar-background: 0 0% 98%;
+    --radius: 1rem;  /* 16px for rounded aesthetics */
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(245 58% 67%), hsl(249 58% 72%));
+    --gradient-coral: linear-gradient(135deg, hsl(10 90% 68%), hsl(15 85% 63%));
+    --gradient-blue: linear-gradient(135deg, hsl(214 88% 65%), hsl(219 85% 70%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(147 73% 41%));
+    --gradient-dark: linear-gradient(135deg, hsl(224 20% 10%), hsl(224 15% 15%));
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(245 58% 67% / 0.3);
+    --shadow-card: 0 10px 30px -10px hsl(224 20% 5% / 0.5);
+    --shadow-coral: 0 8px 25px -8px hsl(10 90% 68% / 0.4);
+    --shadow-blue: 0 8px 25px -8px hsl(214 88% 65% / 0.4);
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar Colors */
+    --sidebar-background: 224 15% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 245 58% 67%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 224 15% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 224 15% 25%;
+    --sidebar-ring: 245 58% 67%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    /* Keep same values as root - we're defaulting to dark theme */
+    --background: 224 20% 10%;
     --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
+    --card: 224 15% 15%;
     --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
+    --popover: 224 15% 15%;
     --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
+    --primary: 245 58% 67%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 224 15% 20%;
     --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
+    --muted: 224 15% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 224 15% 20%;
     --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 224 15% 25%;
+    --input: 224 15% 18%;
+    --ring: 245 58% 67%;
+    --sidebar-background: 224 15% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 245 58% 67%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 224 15% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 224 15% 25%;
+    --sidebar-ring: 245 58% 67%;
   }
 }
 
@@ -100,6 +115,92 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/50 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/70;
+  }
+}
+
+@layer components {
+  /* Crypto Card Variants */
+  .crypto-card {
+    @apply bg-card border border-border rounded-2xl p-6 shadow-lg;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(10px);
+  }
+
+  .crypto-card-coral {
+    @apply crypto-card;
+    background: linear-gradient(135deg, hsl(var(--coral) / 0.1), hsl(var(--coral) / 0.05));
+    border-color: hsl(var(--coral) / 0.2);
+    box-shadow: var(--shadow-coral);
+  }
+
+  .crypto-card-blue {
+    @apply crypto-card;
+    background: linear-gradient(135deg, hsl(var(--blue-accent) / 0.1), hsl(var(--blue-accent) / 0.05));
+    border-color: hsl(var(--blue-accent) / 0.2);
+    box-shadow: var(--shadow-blue);
+  }
+
+  .crypto-card-success {
+    @apply crypto-card;
+    background: linear-gradient(135deg, hsl(var(--success) / 0.1), hsl(var(--success) / 0.05));
+    border-color: hsl(var(--success) / 0.2);
+  }
+
+  /* Text Gradients */
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-coral {
+    background: var(--gradient-coral);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-blue {
+    background: var(--gradient-blue);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  .hover-scale {
+    transition: var(--transition-bounce);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
   }
 }
