@@ -14,13 +14,208 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      audit_log: {
+        Row: {
+          action: string
+          changes: Json | null
+          created_at: string | null
+          id: string
+          trade_id: string | null
+          user_id: string
+        }
+        Insert: {
+          action: string
+          changes?: Json | null
+          created_at?: string | null
+          id?: string
+          trade_id?: string | null
+          user_id: string
+        }
+        Update: {
+          action?: string
+          changes?: Json | null
+          created_at?: string | null
+          id?: string
+          trade_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_log_trade_id_fkey"
+            columns: ["trade_id"]
+            isOneToOne: false
+            referencedRelation: "trades"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "audit_log_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bindings: {
+        Row: {
+          created_at: string | null
+          id: string
+          investor_id: string
+          status: string
+          trader_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          investor_id: string
+          status?: string
+          trader_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          investor_id?: string
+          status?: string
+          trader_id?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bindings_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bindings_trader_id_fkey"
+            columns: ["trader_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trades: {
+        Row: {
+          asset: string
+          category: string
+          created_at: string | null
+          currency: string
+          details: Json | null
+          fees: number | null
+          id: string
+          notes: string | null
+          price: number
+          profit_loss: number | null
+          quantity: number
+          trade_date: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          asset: string
+          category: string
+          created_at?: string | null
+          currency?: string
+          details?: Json | null
+          fees?: number | null
+          id?: string
+          notes?: string | null
+          price: number
+          profit_loss?: number | null
+          quantity: number
+          trade_date: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          asset?: string
+          category?: string
+          created_at?: string | null
+          currency?: string
+          details?: Json | null
+          fees?: number | null
+          id?: string
+          notes?: string | null
+          price?: number
+          profit_loss?: number | null
+          quantity?: number
+          trade_date?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trades_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      users: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          bound_trader_id: string | null
+          created_at: string | null
+          currency: string
+          email: string
+          id: string
+          role: string
+          trader_uid: string | null
+          updated_at: string | null
+          username: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          bound_trader_id?: string | null
+          created_at?: string | null
+          currency?: string
+          email: string
+          id: string
+          role: string
+          trader_uid?: string | null
+          updated_at?: string | null
+          username: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          bound_trader_id?: string | null
+          created_at?: string | null
+          currency?: string
+          email?: string
+          id?: string
+          role?: string
+          trader_uid?: string | null
+          updated_at?: string | null
+          username?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "users_bound_trader_id_fkey"
+            columns: ["bound_trader_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_trader_uid: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
