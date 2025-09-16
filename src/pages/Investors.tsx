@@ -98,6 +98,11 @@ export default function Investors() {
 
       setActionBinding(null);
       setActionType(null);
+      
+      // Refresh bindings to ensure UI is up to date
+      setTimeout(() => {
+        fetchBindings();
+      }, 500);
     } catch (error: any) {
       toast({
         title: "Error",

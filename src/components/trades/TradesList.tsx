@@ -65,15 +65,24 @@ export function TradesList({ category }: TradesListProps) {
         query = query.eq('user_id', profile.id);
       } else {
         // For investors, get their bound trader's trades
-        const { data: bindings } = await supabase
-          .from('bindings')
-          .select('trader_id')
-          .eq('investor_id', profile.id)
-          .eq('status', 'approved')
-          .maybeSingle();
-
-        if (bindings) {
-          query = query.eq('user_id', bindings.trader_id);
+        // Check if investor has an approved binding
+        if (profile.bound_trader_id) {
+          // Verify the binding is still approved
+          const { data: binding } = await supabase
+            .from('bindings')
+            .select('status')
+            .eq('investor_id', profile.id)
+            .eq('trader_id', profile.bound_trader_id)
+            .eq('status', 'approved')
+            .maybeSingle();
+            
+          if (binding) {
+            query = query.eq('user_id', profile.bound_trader_id);
+          } else {
+            setTrades([]);
+            setLoading(false);
+            return;
+          }
         } else {
           setTrades([]);
           setLoading(false);

@@ -47,7 +47,10 @@ export function InvestorDashboard() {
       // Check if user already has a binding
       const { data: binding } = await supabase
         .from('bindings')
-        .select('*, users!bindings_trader_id_fkey(*)')
+        .select(`
+          *,
+          users!bindings_trader_id_fkey(*)
+        `)
         .eq('investor_id', profile?.id)
         .maybeSingle();
 
@@ -150,6 +153,11 @@ export function InvestorDashboard() {
         title: "Request sent!",
         description: `Binding request sent to ${trader.username}. Please wait for approval.`,
       });
+      
+      // Refresh the binding status
+      setTimeout(() => {
+        checkExistingBinding();
+      }, 1000);
     } catch (error: any) {
       toast({
         title: "Error",

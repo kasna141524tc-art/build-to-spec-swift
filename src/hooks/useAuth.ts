@@ -52,6 +52,12 @@ export function useAuth() {
     }
   };
 
+  const refreshProfile = async () => {
+    if (user) {
+      await fetchProfile(user.id);
+    }
+  };
+
   const signUp = async (email: string, password: string, userData: { 
     role: 'trader' | 'investor';
     username: string;
@@ -86,6 +92,7 @@ export function useAuth() {
     signUp,
     signIn,
     signOut,
+    refreshProfile,
     isAuthenticated: !!user,
     isTrader: profile?.role === 'trader',
     isInvestor: profile?.role === 'investor'

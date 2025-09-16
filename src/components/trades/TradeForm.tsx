@@ -186,6 +186,7 @@ export function TradeForm({ trade, onSuccess }: TradeFormProps) {
 
       onSuccess();
     } catch (error: any) {
+      console.error('Trade form error:', error);
       toast({
         title: "Error",
         description: error.message,
